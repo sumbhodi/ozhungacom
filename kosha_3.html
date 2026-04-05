@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Koshas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0D0D1A;
+  color: #7BB8D4;
+  font-family: 'Jost', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #1a1a2e;
+  flex-shrink: 0;
+}
+.nav-home {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #5a5040;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-home:hover { color: #C9A84C; }
+.nav-diagram { cursor: pointer; opacity: 0.8; transition: opacity 0.2s; }
+.nav-diagram:hover { opacity: 1; }
+.nav-arrows { display: flex; gap: 1rem; }
+.nav-arrow {
+  font-size: 1.2rem;
+  color: #3a3028;
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 0.2rem 0.5rem;
+}
+.nav-arrow:hover { color: #7BB8D4; }
+.nav-arrow.dim { opacity: 0.2; pointer-events: none; }
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 2rem 3rem;
+}
+
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-home" href="index.html">← THE KOSHAS</a>
+  <div class="nav-diagram" onclick="window.location='index.html'" title="Back to diagram">
+    <svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg"><ellipse cx="36" cy="36" rx="45" ry="43" fill="#C4623A" opacity="0.12"/><ellipse cx="36" cy="36" rx="37" ry="35" fill="#7ED48A" opacity="0.12"/><ellipse cx="36" cy="36" rx="29" ry="27" fill="#7BB8D4" opacity="1"/><ellipse cx="36" cy="36" rx="21" ry="20" fill="#0D0D1A"/><ellipse cx="36" cy="36" rx="21" ry="20" fill="#C9B8E8" opacity="0.12"/><ellipse cx="36" cy="36" rx="15" ry="14" fill="#F2A7C3" opacity="0.12"/><ellipse cx="36" cy="36" rx="8" ry="8" fill="#C9A84C" opacity="0.5"/><text x="36" y="39" text-anchor="middle" font-family="serif" font-size="7" fill="#0D0D1A" font-weight="bold" pointer-events="none">ॐ</text></svg>
+  </div>
+  <div class="nav-arrows">
+    <a class="nav-arrow " href="kosha_2.html">&#8592;</a>
+    <a class="nav-arrow " href="kosha_4.html">&#8594;</a>
+  </div>
+</nav>
+<main>
+<div style="display:flex;align-items:center;gap:3rem;flex-wrap:wrap;max-width:900px;width:100%;">
+  <div style="flex:1;min-width:280px;">
+    <div style="font-family:'Cinzel',serif;font-size:7rem;font-weight:600;line-height:1;color:#7BB8D4;opacity:0.12;margin-bottom:-1.5rem;">3</div>
+    <div style="font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:600;letter-spacing:0.08em;color:#7BB8D4;">MANOMAYA KOSHA</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#7BB8D4;margin-top:0.3rem;">The Mental Body</div>
+    <div style="height:1px;background:#7BB8D4;opacity:0.25;margin:1rem 0;"></div>
+    <div style="font-size:1.1rem;font-weight:600;line-height:1.65;color:#7BB8D4;margin-bottom:0.8rem;">Thoughts, feelings &amp; sensation.<br>The mind's endless restless current.</div>
+    <div style="font-size:0.95rem;font-weight:300;line-height:1.8;color:#7BB8D4;">The sheath of perception, emotion, and reactive thought. This is the layer most people mistake for the self — the narrator, the worrier, the daydreamer.</div>
+  </div>
+  <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:0.6rem;">
+    <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="130" cy="130" rx="79" ry="74" fill="#7BB8D4"/><ellipse cx="130" cy="130" rx="58" ry="55" fill="#0D0D1A"/><ellipse cx="130" cy="130" rx="22" ry="21" fill="#C9A84C"/><text x="130" y="134" text-anchor="middle" font-family="serif" font-size="18" fill="#0D0D1A" font-weight="bold">ॐ</text>
+    </svg>
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.85rem;color:#7BB8D4;">The Mental Body</div>
+  </div>
+</div>
+</main>
+<a href="kosha_7.html" style="position:fixed;bottom:1.5rem;right:1.5rem;cursor:pointer;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.2rem;z-index:9999;filter:drop-shadow(0 0 8px #FFB3D1);transition:filter 0.2s;" onmouseover="this.style.filter='drop-shadow(0 0 20px #FFB3D1) drop-shadow(0 0 40px #FFB3D1)'" onmouseout="this.style.filter='drop-shadow(0 0 8px #FFB3D1)'">
+  <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 10 C22 10 14 18 14 27 C14 33 17 38 22 41" stroke="#FFB3D1" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M32 10 C42 10 50 18 50 27 C50 33 47 38 42 41" stroke="#FFB3D1" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M22 41 C22 47 26 52 32 53 C38 52 42 47 42 41" stroke="#FFB3D1" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M32 10 L32 53" stroke="#FFB3D1" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+    <path d="M18 24 C20 20 25 18 30 20" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M46 24 C44 20 39 18 34 20" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M16 32 C18 30 22 30 24 32" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M48 32 C46 30 42 30 40 32" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round" fill="none"/>
+  </svg>
+  <span style="font-size:0.6rem;color:#FFB3D1;letter-spacing:0.12em;font-weight:500;">MAYA</span>
+</a>
+<script>
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' && 'kosha_4.html') window.location='kosha_4.html';
+  if (e.key === 'ArrowLeft'  && 'kosha_2.html') window.location='kosha_2.html';
+  if (e.key === 'Escape') window.location='index.html';
+});
+</script>
+</body>
+</html>
