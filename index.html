@@ -9,20 +9,32 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  background: #0A0A12;
+  background: #111118;
   color: #F5F0E8;
   font-family: 'Jost', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 2rem 1rem 3rem;
+  padding: 2rem 1.5rem 2rem;
+}
+
+/* PAGE WRAPPER */
+.page-content {
+  width: 100%;
+  max-width: 1400px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* HEADER */
-.header { text-align: center; margin-bottom: 0.4rem; }
+.header {
+  text-align: center;
+  margin-bottom: 0;
+}
 
+/* FONT SIZE 1 — Giant title */
 h1 {
   font-family: 'Cinzel', serif;
   font-size: clamp(2.8rem, 7vw, 5.5rem);
@@ -30,318 +42,252 @@ h1 {
   letter-spacing: 0.18em;
   color: #F5F0E8;
   line-height: 1;
-  cursor: pointer;
-  transition: color 0.2s;
 }
-h1:hover { color: #C9A84C; }
-h1 title-hint { display:none; }
 
+/* FONT SIZE 3 — All body text (subtitle, tagline, translations, descriptions) */
 .subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   color: #C9A84C;
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-size: 1.15rem;
   letter-spacing: 0.1em;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
 }
 
 .tagline {
-  font-size: clamp(0.65rem, 1.3vw, 0.85rem);
+  font-size: 1.1rem;
   color: #C9A84C;
   font-weight: 300;
-  margin-top: 0.3rem;
+  margin-top: 0.35rem;
   letter-spacing: 0.04em;
 }
 
-.click-hint {
-  font-size: 0.65rem;
-  color: #C9A84C;
-  letter-spacing: 0.12em;
-  margin-top: 0.2rem;
-  font-weight: 300;
-  opacity: 0.5;
-}
-
-/* MAIN LAYOUT — poster style: diagram left, labels right */
+/* MAIN LAYOUT — CSS grid, diagram always centered */
 .poster {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   gap: 2rem;
   width: 100%;
-  max-width: 1100px;
-  margin-top: 0.5rem;
-  position: relative;
+  margin-top: 2.8rem;   /* breathing room below tagline */
+  align-items: center;
+  flex: 1;
 }
 
 /* SVG DIAGRAM */
-.diagram { flex: 0 0 auto; position: relative; }
+.diagram { display: flex; align-items: center; justify-content: center; }
 
 .ring {
   cursor: pointer;
   transition: filter 0.2s;
 }
-.ring:hover ellipse.colored { filter: brightness(1.4); }
-.ring:hover { filter: drop-shadow(0 0 10px rgba(255,255,255,0.15)); }
+.ring:hover { filter: drop-shadow(0 0 12px rgba(255,255,255,0.18)); }
 
-/* LABELS column */
-.labels {
-  flex: 1 1 300px;
+/* LEFT column */
+.left-labels {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  max-width: 380px;
+  gap: 1.3rem;
+  max-width: 240px;
+  justify-self: end;
 }
 
-.label-item {
+/* RIGHT LABELS column */
+.labels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* shared item style */
+.label-item, .left-item {
   cursor: pointer;
-  transition: opacity 0.2s;
   padding-left: 0.5rem;
   border-left: 2px solid transparent;
   transition: border-color 0.2s, padding 0.2s;
 }
-.label-item:hover { border-left-color: currentColor; padding-left: 0.9rem; }
+.label-item:hover, .left-item:hover {
+  border-left-color: currentColor;
+  padding-left: 0.9rem;
+}
+
+/* FONT SIZE 2 — Section names / kosha names */
+.label-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
 
 .label-num {
   font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 600;
   vertical-align: super;
   margin-right: 0.15rem;
   opacity: 0.7;
 }
 
-.label-name {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-}
-
+/* FONT SIZE 3 — translations and descriptions */
 .label-translation {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   opacity: 0.85;
-  margin-top: 0.05rem;
+  margin-top: 0.1rem;
 }
 
 .label-desc {
-  font-size: 0.82rem;
+  font-size: 1.05rem;
   font-weight: 300;
   color: inherit;
   margin-top: 0.2rem;
   line-height: 1.5;
 }
 
-/* ATMAN bottom section */
-.atman-bar {
-  text-align: center;
-  margin-top: 0.3rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid #1e1a28;
-  width: 100%;
-  max-width: 700px;
-  position: relative;
-}
-.atman-bar::before {
-  content: '◆';
-  color: #4a3e20;
-  font-size: 0.5rem;
-  position: absolute;
-  top: -0.35rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #0A0A12;
-  padding: 0 0.4rem;
-}
-
-.atman-name {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  letter-spacing: 0.2em;
-  color: #C9A84C;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.atman-name:hover { color: #F5E070; }
-
-.atman-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: #C9A84C;
-  font-size: 0.95rem;
-  margin-top: 0.1rem;
-}
-
-.atman-desc {
-  font-size: 0.8rem;
-  color: #C9A84C;
-  font-weight: 300;
-  line-height: 1.7;
-  margin-top: 0.5rem;
-}
-
-.tattvamasi {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: #C9A84C;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  margin-top: 0.6rem;
-  opacity: 0.5;
-}
-
-/* PINK BRAIN corner */
-.brain-corner {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-  z-index: 9999;
-  filter: drop-shadow(0 0 8px #FFB3D1);
-  transition: filter 0.2s;
-}
-.brain-corner:hover {
-  filter: drop-shadow(0 0 20px #FFB3D1) drop-shadow(0 0 40px #FFB3D1);
-}
-.brain-corner svg { width: 42px; height: 42px; }
-.brain-label {
-  font-size: 0.6rem;
-  color: #FFB3D1;
-  letter-spacing: 0.12em;
-  font-weight: 500;
-}
-
-/* connector lines — decorative only, pointer-events none */
+/* decorative only */
 .connector { pointer-events: none; }
+
+.left-divider {
+  height: 1px;
+  background: #2a2830;
+  margin: 0.1rem 0.5rem;
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1 onclick="go('kosha_8')">THE KOSHAS</h1>
-  <div class="subtitle">Panchakoshaviveka &nbsp;·&nbsp; The Five Sheaths of Being</div>
-  <div class="tagline">In Vedantic philosophy, five sheaths of Maya veil the Atman — the eternal, undivided Self.</div>
-  <div class="click-hint">click the title for quick reference &nbsp;·&nbsp; click any ring or label to explore</div>
-  <div style="margin-top:0.6rem;text-align:left;">
-    <a href="kosha_7.html" style="font-size:1.8rem;text-decoration:none;cursor:pointer;display:inline-block;filter:drop-shadow(0 0 8px #FFB3D1);transition:filter 0.2s;" onmouseover="this.style.filter='drop-shadow(0 0 20px #FFB3D1) drop-shadow(0 0 40px #FFB3D1)'" onmouseout="this.style.filter='drop-shadow(0 0 8px #FFB3D1)'" title="Maya · The Veil · Controlled Hallucination">🧠</a>
-  </div>
-</div>
+<div class="page-content">
 
-<div class="poster">
-
-  <!-- SVG DIAGRAM -->
-  <div class="diagram">
-    <svg width="420" height="400" viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
-
-      <!-- connector lines from rings to labels (decorative) -->
-      <g class="connector" opacity="0.25">
-        <line x1="410" y1="80"  x2="420" y2="80"  stroke="#C4623A" stroke-width="0.8"/>
-        <line x1="410" y1="148" x2="420" y2="148" stroke="#7ED48A" stroke-width="0.8"/>
-        <line x1="350" y1="200" x2="420" y2="200" stroke="#7BB8D4" stroke-width="0.8"/>
-        <line x1="310" y1="258" x2="420" y2="258" stroke="#C9B8E8" stroke-width="0.8"/>
-        <line x1="260" y1="308" x2="420" y2="308" stroke="#F2A7C3" stroke-width="0.8"/>
-      </g>
-
-      <!-- ANNAMAYA -->
-      <g class="ring" onclick="go('kosha_1')" role="link" aria-label="Annamaya Kosha">
-        <title>Annamaya Kosha — click to explore</title>
-        <ellipse class="colored" cx="210" cy="200" rx="205" ry="195" fill="#C4623A"/>
-        <ellipse cx="210" cy="200" rx="168" ry="160" fill="#0A0A12"/>
-      </g>
-
-      <!-- PRANAMAYA -->
-      <g class="ring" onclick="go('kosha_2')" role="link" aria-label="Pranamaya Kosha">
-        <title>Pranamaya Kosha — click to explore</title>
-        <ellipse class="colored" cx="210" cy="200" rx="168" ry="160" fill="#7ED48A"/>
-        <ellipse cx="210" cy="200" rx="131" ry="124" fill="#0A0A12"/>
-      </g>
-
-      <!-- MANOMAYA -->
-      <g class="ring" onclick="go('kosha_3')" role="link" aria-label="Manomaya Kosha">
-        <title>Manomaya Kosha — click to explore</title>
-        <ellipse class="colored" cx="210" cy="200" rx="131" ry="124" fill="#7BB8D4"/>
-        <ellipse cx="210" cy="200" rx="97" ry="92" fill="#0A0A12"/>
-      </g>
-
-      <!-- VIJNANAMAYA -->
-      <g class="ring" onclick="go('kosha_4')" role="link" aria-label="Vijnanamaya Kosha">
-        <title>Vijnanamaya Kosha — click to explore</title>
-        <ellipse class="colored" cx="210" cy="200" rx="97" ry="92" fill="#C9B8E8"/>
-        <ellipse cx="210" cy="200" rx="66" ry="63" fill="#0A0A12"/>
-      </g>
-
-      <!-- ANANDAMAYA -->
-      <g class="ring" onclick="go('kosha_5')" role="link" aria-label="Anandamaya Kosha">
-        <title>Anandamaya Kosha — click to explore</title>
-        <ellipse class="colored" cx="210" cy="200" rx="66" ry="63" fill="#F2A7C3"/>
-        <ellipse cx="210" cy="200" rx="37" ry="35" fill="#0A0A12"/>
-      </g>
-
-      <!-- ATMAN -->
-      <g class="ring" onclick="go('kosha_6')" role="link" aria-label="Atman">
-        <title>Atman — The True Self</title>
-        <ellipse class="colored" cx="210" cy="200" rx="37" ry="35" fill="#C9A84C"/>
-        <text x="210" y="205" text-anchor="middle" dominant-baseline="middle"
-              font-family="serif" font-size="20" fill="#0A0A12" font-weight="bold"
-              pointer-events="none">ॐ</text>
-      </g>
-
-    </svg>
+  <div class="header">
+    <h1>THE KOSHAS</h1>
+    <div class="subtitle">Panchakoshaviveka &nbsp;·&nbsp; The Five Sheaths of Being</div>
+    <div class="tagline">In Vedantic philosophy, five sheaths of Maya veil the Atman — the eternal, undivided Self.</div>
   </div>
 
-  <!-- LABELS -->
-  <div class="labels">
+  <div class="poster">
 
-    <div class="label-item" style="color:#C4623A;" onclick="go('kosha_1')">
-      <div class="label-name"><span class="label-num">1</span>ANNAMAYA KOSHA</div>
-      <div class="label-translation">The Food Body</div>
-      <div class="label-desc">The body of flesh, bone &amp; earth.<br>Nourished by food. The outermost veil.</div>
+    <!-- LEFT COLUMN -->
+    <div class="left-labels">
+
+      <div class="left-item" style="color:#FFB3D1;" onclick="window.location='kosha_7.html'">
+        <div class="label-name">MAYA &nbsp;·&nbsp; THE VEIL</div>
+        <div class="label-translation">Controlled Hallucination</div>
+        <div class="label-desc">Vedic science &nbsp;→&nbsp; neuroscience</div>
+      </div>
+
+      <div class="left-item" style="color:#C9A84C;" onclick="window.location='kosha_6.html'">
+        <div class="label-name">ATMAN</div>
+        <div class="label-translation">The True Self</div>
+        <div class="label-desc">Pure Consciousness — the ground beneath all veils.</div>
+      </div>
+
+      <div class="left-divider"></div>
+
+      <div class="left-item" style="color:#A4B8D4;" onclick="window.location='duality.html'">
+        <div class="label-name">DUALITY</div>
+        <div class="label-translation">In Here / Out There</div>
+        <div class="label-desc">The primal split — and why both halves are suspect.</div>
+      </div>
+
+      <div class="left-item" style="color:#E8D080;" onclick="window.location='brahman.html'">
+        <div class="label-name">BRAHMAN</div>
+        <div class="label-translation">The Undivided Ground</div>
+        <div class="label-desc">Atman is Brahman. One indivisible expanse.</div>
+      </div>
+
+      <div class="left-divider"></div>
+
+      <div class="left-item" style="color:#C9A84C; opacity:0.65;" onclick="window.location='kosha_8.html'">
+        <div class="label-name">QUICK REFERENCE</div>
+        <div class="label-translation">The Five Sheaths at a Glance</div>
+        <div class="label-desc">All five koshas side by side.</div>
+      </div>
+
     </div>
 
-    <div class="label-item" style="color:#7ED48A;" onclick="go('kosha_2')">
-      <div class="label-name"><span class="label-num">2</span>PRANAMAYA KOSHA</div>
-      <div class="label-translation">The Vital Body</div>
-      <div class="label-desc">Breath and life force — prana.<br>The energy that animates all form.</div>
+    <!-- SVG DIAGRAM — enlarged -->
+    <div class="diagram">
+      <svg width="560" height="533" viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+
+
+        <g class="ring" onclick="go('kosha_1')" role="link" aria-label="Annamaya Kosha">
+          <title>Annamaya Kosha — click to explore</title>
+          <ellipse cx="210" cy="200" rx="205" ry="195" fill="#C4623A"/>
+          <ellipse cx="210" cy="200" rx="168" ry="160" fill="#111118"/>
+        </g>
+
+        <g class="ring" onclick="go('kosha_2')" role="link" aria-label="Pranamaya Kosha">
+          <title>Pranamaya Kosha — click to explore</title>
+          <ellipse cx="210" cy="200" rx="168" ry="160" fill="#7ED48A"/>
+          <ellipse cx="210" cy="200" rx="131" ry="124" fill="#111118"/>
+        </g>
+
+        <g class="ring" onclick="go('kosha_3')" role="link" aria-label="Manomaya Kosha">
+          <title>Manomaya Kosha — click to explore</title>
+          <ellipse cx="210" cy="200" rx="131" ry="124" fill="#7BB8D4"/>
+          <ellipse cx="210" cy="200" rx="97" ry="92" fill="#111118"/>
+        </g>
+
+        <g class="ring" onclick="go('kosha_4')" role="link" aria-label="Vijnanamaya Kosha">
+          <title>Vijnanamaya Kosha — click to explore</title>
+          <ellipse cx="210" cy="200" rx="97" ry="92" fill="#C9B8E8"/>
+          <ellipse cx="210" cy="200" rx="66" ry="63" fill="#111118"/>
+        </g>
+
+        <g class="ring" onclick="go('kosha_5')" role="link" aria-label="Anandamaya Kosha">
+          <title>Anandamaya Kosha — click to explore</title>
+          <ellipse cx="210" cy="200" rx="66" ry="63" fill="#F2A7C3"/>
+          <ellipse cx="210" cy="200" rx="37" ry="35" fill="#111118"/>
+        </g>
+
+        <g class="ring" onclick="go('kosha_6')" role="link" aria-label="Atman">
+          <title>Atman — The True Self</title>
+          <ellipse cx="210" cy="200" rx="37" ry="35" fill="#C9A84C"/>
+          <text x="210" y="205" text-anchor="middle" dominant-baseline="middle"
+                font-family="serif" font-size="20" fill="#111118" font-weight="bold"
+                pointer-events="none">ॐ</text>
+        </g>
+
+      </svg>
     </div>
 
-    <div class="label-item" style="color:#7BB8D4;" onclick="go('kosha_3')">
-      <div class="label-name"><span class="label-num">3</span>MANOMAYA KOSHA</div>
-      <div class="label-translation">The Mental Body</div>
-      <div class="label-desc">Thoughts, feelings &amp; sensation.<br>The mind's endless restless current.</div>
+    <!-- RIGHT LABELS — The 5 Koshas -->
+    <div class="labels">
+
+      <div class="label-item" style="color:#C4623A;" onclick="go('kosha_1')">
+        <div class="label-name"><span class="label-num">1</span>ANNAMAYA KOSHA</div>
+        <div class="label-translation">The Food Body</div>
+        <div class="label-desc">The body of flesh, bone &amp; earth.<br>Nourished by food. The outermost veil.</div>
+      </div>
+
+      <div class="label-item" style="color:#7ED48A;" onclick="go('kosha_2')">
+        <div class="label-name"><span class="label-num">2</span>PRANAMAYA KOSHA</div>
+        <div class="label-translation">The Vital Body</div>
+        <div class="label-desc">Breath and life force — prana.<br>The energy that animates all form.</div>
+      </div>
+
+      <div class="label-item" style="color:#7BB8D4;" onclick="go('kosha_3')">
+        <div class="label-name"><span class="label-num">3</span>MANOMAYA KOSHA</div>
+        <div class="label-translation">The Mental Body</div>
+        <div class="label-desc">Thoughts, feelings &amp; sensation.<br>The mind's endless restless current.</div>
+      </div>
+
+      <div class="label-item" style="color:#C9B8E8;" onclick="go('kosha_4')">
+        <div class="label-name"><span class="label-num">4</span>VIJNANAMAYA KOSHA</div>
+        <div class="label-translation">The Wisdom Body</div>
+        <div class="label-desc">Intellect, reason &amp; discernment.<br>The witnessing awareness behind mind.</div>
+      </div>
+
+      <div class="label-item" style="color:#F2A7C3;" onclick="go('kosha_5')">
+        <div class="label-name"><span class="label-num">5</span>ANANDAMAYA KOSHA</div>
+        <div class="label-translation">The Bliss Body</div>
+        <div class="label-desc">Causeless joy &amp; dreamless sleep.<br>The innermost veil near pure Being.</div>
+      </div>
+
     </div>
+  </div><!-- end .poster -->
 
-    <div class="label-item" style="color:#C9B8E8;" onclick="go('kosha_4')">
-      <div class="label-name"><span class="label-num">4</span>VIJNANAMAYA KOSHA</div>
-      <div class="label-translation">The Wisdom Body</div>
-      <div class="label-desc">Intellect, reason &amp; discernment.<br>The witnessing awareness behind mind.</div>
-    </div>
-
-    <div class="label-item" style="color:#F2A7C3;" onclick="go('kosha_5')">
-      <div class="label-name"><span class="label-num">5</span>ANANDAMAYA KOSHA</div>
-      <div class="label-translation">The Bliss Body</div>
-      <div class="label-desc">Causeless joy &amp; dreamless sleep.<br>The innermost veil near pure Being.</div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ATMAN -->
-<div class="atman-bar">
-  <div class="atman-name" onclick="go('kosha_6')">ATMAN</div>
-  <div class="atman-sub">The True Self — Pure Consciousness</div>
-  <div class="atman-desc">
-    Eternal, boundless, without attribute — not a layer, but the ground beneath all layers.<br>
-    The Atman is what remains when every sheath of Maya is seen through and set aside.
-  </div>
-  <div class="tattvamasi">Tat tvam asi &nbsp;·&nbsp; Thou art That</div>
-</div>
+</div><!-- end .page-content -->
 
 <script>
 function go(page) {
